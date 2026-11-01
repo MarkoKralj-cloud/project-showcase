@@ -1,34 +1,34 @@
 # DESIGN – Project Showcase
 
 ## Gefühlssatz
-„Modern und individuell, ohne generische Template-Optik – ansprechend für Unternehmen, die sehen wollen, was der Bewerber schon produziert hat."
+„Modern minimalistischer SaaS-Look, hier und da gerundet, einladend, aber professionell – leicht verspielt und sympathisch durch minimalistische Farbeinsätze und eine klare Struktur."
 
 ## Leitidee
-Ein Bewerber, der Produkte nicht nur baut, sondern bis in den Betrieb absichert. Deshalb liest sich die Seite wie ein technisches Datenblatt mit editorialer Typografie: Fakten vor Adjektiven, Entscheidungen mit Begründung, Screens als nummerierte Abbildungen.
+Die Seite präsentiert zwei Produkte so, wie ein gutes SaaS-Produkt sich selbst präsentiert: Produktbilder auf ruhigen, getönten Flächen, klare Fallstudien mit Problem, Lösung und Entscheidungen. Die persönlichen Go-to-Farben (Weiß + Teal) machen sie wiedererkennbar.
 
 ## Achsen (Signature-Entscheidungen)
 | Achse | Entscheidung |
 |---|---|
-| Display-Typo | **Editorial Serif** (Instrument Serif), groß und ruhig |
-| Radius | **Scharf** (2px), Haarlinien statt Karten-Schatten |
-| Tiefe | **Flach**, nur Linien und Flächen |
-| Hero-Gewicht | Typo dominiert, Fakten-Spalte rechts |
-| Dichte | Luftig in Headlines, kompakt in Datenblöcken |
-| Motion | Minimal: Hover-Pfeile, Lightbox |
+| Radius | **Weich**: 12–20px Flächen, Pill-Buttons und Chips |
+| Display-Typo | **Grotesk/technisch**: Geist 600 mit engem Tracking, keine Serife |
+| Tiefe | Leicht: Haarlinie + dezenter Schatten nur an Produktbildern |
+| Hero-Gewicht | Ausgewogen: Headline oben, Produktbild-Komposition darunter |
+| Dichte | Luftig |
+| Motion | Minimal: Hover-Lift, Lightbox |
 
 ## Palette
-Warmes Papier (`--paper`), Tinte (`--ink`), ein Signalakzent Zinnober (`--accent`) nur für Nummern, Marker, die eine betonte Hero-Phrase und den einen CTA. Kein Türkis (das ist das Produkt-Branding, nicht die Person).
+Weiß (`--bg`) und kühles Hellgrau (`--bg-soft`) als Fläche, Tinte mit leichtem Teal-Unterton, ein Akzent Teal `#2E8C89`, für Text und Buttons `#277A77` (Kontrast), getönt als `--accent-soft` für Produktbild-Flächen und Chips.
 
 ## Do
-- Jede Aussage im Code belegbar; Zahlen nur, wenn nachgezählt
-- Abbildungen nummerieren (Abb. 1.1) und beschriften
-- Zwei Fallstudien mit gleicher Gliederung, verschiedenen Galerie-Layouts
+- Jede Aussage im Code belegbar; keine erfundenen Kennzahlen
+- Produktbilder immer auf getönter, gerundeter Fläche
+- Ein primärer CTA-Stil (Teal-Pill), sekundär als Outline-Pill
 
 ## Don't
-- Gradients, Glassmorphism, Icon-Card-Reihen, Emoji
-- Kundennamen, Firmenbezug, erfundene Kennzahlen
-- Badge-Wolken ohne Kontext
+- Beige/Zeitungsoptik, Serifen-Display
+- Gradients in Lila/Blau, Glassmorphism, Emoji
+- Kundennamen, Firmenbezug im Seitennamen
 
-## Preserve-Liste (aus v1)
-- Alle Screenshots und verifizierten Fakten
-- `noindex`, Hinweis auf Demo-Daten und privaten Code
+## Preserve-Liste
+- Alle Screenshots und verifizierten Fakten, Fallstudien-Gliederung
+- Selbst gehostete Fonts, `noindex`, Hinweis auf Demo-Daten und privaten Code
