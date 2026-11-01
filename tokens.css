@@ -1,0 +1,60 @@
+:root {
+  color-scheme: light;
+
+  /* Farbe */
+  --paper: #f3f0e8;
+  --paper-2: #ebe7dc;
+  --surface: #faf8f3;
+  --ink: #1a1815;
+  --ink-2: #4a463f;
+  --ink-3: #6f6a60;
+  --line: #d6d0c3;
+  --line-strong: #1a1815;
+  --accent: #b23a12;
+  --accent-ink: #fff8f2;
+
+  /* Typografie */
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-text: "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  /* Skala 1.333 */
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.777rem;
+  --fs-2xl: clamp(2.25rem, 4.6vw, 3.157rem);
+  --fs-3xl: clamp(2.75rem, 7.4vw, 5.61rem);
+  --lh-tight: 1.04;
+  --lh-snug: 1.25;
+  --lh-text: 1.6;
+
+  /* Abstände (Basis 4px) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 128px;
+  --section: var(--s-10);
+  --gutter: 20px;
+  --maxw: 1200px;
+
+  /* Form */
+  --radius: 2px;
+  --hair: 1px solid var(--line);
+  --rule: 1px solid var(--line-strong);
+
+  /* Motion */
+  --t-fast: 160ms;
+  --t-med: 320ms;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+@media (max-width: 760px) {
+  :root { --section: var(--s-8); }
+}
