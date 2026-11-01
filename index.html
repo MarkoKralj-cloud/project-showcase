@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Showcase – Marko Kraljević</title>
+<meta name="description" content="Zwei selbst entwickelte KI-Produkte: ein KI-Postfach für Kundensupport und ein Content-Planer mit automatischer Veröffentlichung.">
+<meta name="robots" content="noindex">
+<style>
+  :root {
+    --bg: #fafaf8; --surface: #ffffff; --text: #16201e; --muted: #5b6764;
+    --line: #e3e6e3; --accent: #1f7a6f; --accent-soft: #e4f1ee; --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #111615; --surface: #19201e; --text: #e8edeb; --muted: #9aa6a2; --line: #2a3330; --accent: #5cc2b3; --accent-soft: #1d2f2b; --shadow: none; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+  header { padding: 72px 0 40px; }
+  .eyebrow { font: 600 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.1; margin: 14px 0 16px; letter-spacing: -.02em; }
+  h2 { font-size: clamp(26px, 3.5vw, 36px); line-height: 1.15; margin: 8px 0 12px; letter-spacing: -.01em; }
+  h3 { font-size: 17px; margin: 0 0 8px; }
+  p { margin: 0 0 12px; }
+  .lead { font-size: 19px; color: var(--muted); max-width: 720px; }
+  nav.toc { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+  nav.toc a { text-decoration: none; color: var(--text); border: 1px solid var(--line); background: var(--surface); padding: 8px 14px; border-radius: 999px; font-size: 14px; }
+  nav.toc a:hover { border-color: var(--accent); color: var(--accent); }
+  section.project { padding: 56px 0; border-top: 1px solid var(--line); }
+  .grid2 { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; margin: 28px 0; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
+  ul { margin: 0; padding-left: 20px; } li { margin: 4px 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .tag { font: 500 12.5px/1 ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--accent-soft); color: var(--accent); padding: 6px 9px; border-radius: 6px; }
+  figure { margin: 0; }
+  figure a { display: block; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface); }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; }
+  .hero-shot { margin: 8px 0 24px; }
+  .shots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .phones { display: grid; grid-template-columns: repeat(3, minmax(0, 260px)); gap: 24px; margin-top: 24px; }
+  .flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 4px 0 0; font-size: 14px; }
+  .flow span { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
+  .flow i { color: var(--muted); font-style: normal; }
+  .note { font-size: 14px; color: var(--muted); }
+  footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 14px; }
+  a { color: var(--accent); }
+  @media (max-width: 820px) {
+    header { padding-top: 48px; }
+    .grid2, .shots { grid-template-columns: 1fr; }
+    .phones { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <div class="eyebrow">Project Showcase</div>
+  <h1>KI-Produkte, von der Idee bis zum laufenden System</h1>
+  <p class="lead">Zwei Produkte, die ich konzipiert, gestaltet und umgesetzt habe: ein KI-Postfach, das Support-Anfragen mit Quellen beantwortet, und ein Content-Planer, der Videos transkribiert, Captions schreibt und automatisch veröffentlicht.</p>
+  <nav class="toc" aria-label="Projekte">
+    <a href="#ai-inbox">AI Inbox</a>
+    <a href="#content-planner">Content Planner</a>
+    <a href="#arbeitsweise">Arbeitsweise</a>
+  </nav>
+</header>
+
+<main>
+<section class="project" id="ai-inbox">
+  <div class="wrap">
+    <div class="eyebrow">Projekt 1 · SaaS</div>
+    <h2>AI Inbox – KI-gestützter Kundensupport</h2>
+    <p class="lead">Eingehende Support-E-Mails werden klassifiziert, mit der eigenen Wissensdatenbank abgeglichen und als Antwortentwurf vorbereitet. Ein Mensch prüft und gibt frei; Routinefälle können je Kategorie automatisch versendet werden.</p>
+
+    <figure class="hero-shot">
+      <a href="assets/ai-inbox/ticket-detail.webp" target="_blank" rel="noopener"><img src="assets/ai-inbox/ticket-detail.webp" alt="Posteingang mit geöffnetem Fall, KI-Antwortentwurf mit Konfidenz und Co-Pilot-Spalte mit Quellen aus der Wissensdatenbank" width="2880" height="1800"></a>
+      <figcaption>Fallansicht: Kundenanfrage, KI-Entwurf mit Konfidenz und die Quellen, auf die sich der Entwurf stützt.</figcaption>
+    </figure>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Was das System macht</h3>
+        <ul>
+          <li>E-Mail-Eingang per IMAP, Versand per SMTP</li>
+          <li>Klassifizierung nach Anliegen, Thema, Dringlichkeit und Stimmung</li>
+          <li>Retrieval-Augmented Generation über Dokumente, URLs und Notion</li>
+          <li>Antwortentwurf mit Konfidenzwert und nachvollziehbaren Quellen</li>
+          <li>Freigabe-Workflow: menschliche Prüfung oder Auto-Versand je Kategorie</li>
+          <li>Auswertung von Akzeptanzrate, Bearbeitungsrate und Wissenslücken</li>
+          <li>Mehrmandantenfähig, mit Teamrollen, Audit-Log und Abrechnung</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Ablauf</h3>
+        <div class="flow"><span>Eingang</span><i>→</i><span>Klassifizierung</span><i>→</i><span>Wissenssuche</span><i>→</i><span>Entwurf</span><i>→</i><span>Prüfung</span><i>→</i><span>Versand</span></div>
+        <h3 style="margin-top:20px">Technik</h3>
+        <div class="tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span><span class="tag">Node.js / Express</span><span class="tag">PostgreSQL</span><span class="tag">OpenAI API</span><span class="tag">RAG</span><span class="tag">Clerk</span><span class="tag">Stripe</span><span class="tag">Sentry</span><span class="tag">Vitest</span><span class="tag">Playwright</span></div>
+        <h3 style="margin-top:20px">Engineering-Schwerpunkte</h3>
+        <ul>
+          <li>Ticket-Zustandsmaschine statt verstreuter Sonderfälle</li>
+          <li>Versandgarantie: keine Doppelzustellung bei unklarem Ausgang</li>
+          <li>Strikte Mandantentrennung</li>
+          <li>Logs ohne personenbezogene Daten, bevor sie Sentry erreichen</li>
+          <li>Knapp 500 automatisierte Tests plus visuelle Regressionstests</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="shots">
+      <figure><a href="assets/ai-inbox/dashboard.webp" target="_blank" rel="noopener"><img src="assets/ai-inbox/dashboard.webp" alt="Startseite mit Fällen, die auf Freigabe warten, sortiert nach Dringlichkeit" loading="lazy" width="2880" height="1800"></a><figcaption>Start: Was heute ansteht, sortiert nach Dringlichkeit und Wartezeit.</figcaption></figure>
+      <figure><a href="assets/ai-inbox/analytics.webp" target="_blank" rel="noopener"><img src="assets/ai-inbox/analytics.webp" alt="KI-Leistung mit Akzeptanzrate, Konfidenz und Entwurfsqualität nach Kategorie" loading="lazy" width="2880" height="1800"></a><figcaption>KI-Leistung: Akzeptanz- und Bearbeitungsrate je Kategorie.</figcaption></figure>
+      <figure><a href="assets/ai-inbox/knowledge.webp" target="_blank" rel="noopener"><img src="assets/ai-inbox/knowledge.webp" alt="Wissensdatenbank mit Quellen und Wissenslücken-Analyse" loading="lazy" width="2880" height="1800"></a><figcaption>Wissensdatenbank mit automatischer Wissenslücken-Analyse.</figcaption></figure>
+      <figure><a href="assets/ai-inbox/mobile-inbox.webp" target="_blank" rel="noopener"><img src="assets/ai-inbox/mobile-inbox.webp" alt="Mobile Ansicht des Posteingangs" loading="lazy" width="780" height="1688" style="max-width:300px;margin:0 auto"></a><figcaption>Mobile Ansicht des Posteingangs.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="project" id="content-planner">
+  <div class="wrap">
+    <div class="eyebrow">Projekt 2 · Web-App</div>
+    <h2>Content Planner – vom Video zum geplanten Post</h2>
+    <p class="lead">Videos hochladen, transkribieren lassen und pro Plattform passende Captions und Hashtags erhalten. Die Posts werden im Kalender geplant, vor der Veröffentlichung gegen Plattformregeln geprüft und zum geplanten Zeitpunkt automatisch veröffentlicht.</p>
+
+    <figure class="hero-shot">
+      <a href="assets/content-planner/dashboard-week.webp" target="_blank" rel="noopener"><img src="assets/content-planner/dashboard-week.webp" alt="Wochenkalender mit geplanten Posts für Instagram, Facebook und YouTube und einer Content-Queue" width="2880" height="1800"></a>
+      <figcaption>Planung: Entwürfe aus der Queue per Drag-and-drop auf einen Termin ziehen.</figcaption>
+    </figure>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Was das System macht</h3>
+        <ul>
+          <li>Video-Upload in einen S3-kompatiblen Speicher</li>
+          <li>Transkription und KI-Captions pro Plattform, mit Markenstimme und Hashtag-Pool</li>
+          <li>Wochen- und Monatskalender mit Drag-and-drop und Zeitvorschlag aus Reichweitendaten</li>
+          <li>Automatische Veröffentlichung: Instagram und Facebook direkt über die Meta Graph API, TikTok und YouTube über einen Publishing-Dienst</li>
+          <li>Preflight-Regelwerk mit 18 Plattformregeln gegen Reichweitenverlust (z. B. doppelte Captions, Hashtag-Anzahl, Clickbait)</li>
+          <li>Archiv veröffentlichter Inhalte, Fehler- und Wartungszustände</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Ablauf</h3>
+        <div class="flow"><span>Upload</span><i>→</i><span>Transkript</span><i>→</i><span>Caption</span><i>→</i><span>Planung</span><i>→</i><span>Preflight</span><i>→</i><span>Veröffentlichung</span></div>
+        <h3 style="margin-top:20px">Technik</h3>
+        <div class="tags"><span class="tag">TypeScript</span><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Tailwind CSS</span><span class="tag">Drizzle ORM</span><span class="tag">PostgreSQL</span><span class="tag">Node.js Worker</span><span class="tag">OpenAI API</span><span class="tag">Whisper</span><span class="tag">S3 Storage</span><span class="tag">Meta Graph API</span><span class="tag">Clerk</span></div>
+        <h3 style="margin-top:20px">Engineering-Schwerpunkte</h3>
+        <ul>
+          <li>Getrennter Worker für Scheduling, Veröffentlichung und Token-Erneuerung</li>
+          <li>Eindeutige Fehlerklassen pro Plattform statt generischer Fehlermeldungen</li>
+          <li>Responsives Designsystem mit Desktop-, Tablet- und Mobil-Navigation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="shots">
+      <figure><a href="assets/content-planner/draft-editor.webp" target="_blank" rel="noopener"><img src="assets/content-planner/draft-editor.webp" alt="Entwurfseditor mit KI-Caption, Hashtags und geplantem Termin" loading="lazy" width="2880" height="1800"></a><figcaption>Editor: KI-Vorschlag für Caption und Hashtags, frei anpassbar.</figcaption></figure>
+      <figure><a href="assets/content-planner/dashboard-month.webp" target="_blank" rel="noopener"><img src="assets/content-planner/dashboard-month.webp" alt="Monatsansicht des Content-Kalenders" loading="lazy" width="2880" height="1800"></a><figcaption>Monatsansicht für die längerfristige Planung.</figcaption></figure>
+      <figure><a href="assets/content-planner/upload.webp" target="_blank" rel="noopener"><img src="assets/content-planner/upload.webp" alt="Upload-Seite mit Formatwahl Reel oder YouTube Longform" loading="lazy" width="2880" height="1800"></a><figcaption>Upload mit Formatwahl: Reel oder YouTube-Longform.</figcaption></figure>
+      <figure><a href="assets/content-planner/settings.webp" target="_blank" rel="noopener"><img src="assets/content-planner/settings.webp" alt="Einstellungen mit Content-Vorgaben und Hashtag-Pool" loading="lazy" width="2880" height="1800"></a><figcaption>Einstellungen: Content-Vorgaben und Hashtag-Pool für die Caption-Engine.</figcaption></figure>
+    </div>
+    <div class="phones">
+      <figure><a href="assets/content-planner/mobile-dashboard.webp" target="_blank" rel="noopener"><img src="assets/content-planner/mobile-dashboard.webp" alt="Mobile Agenda-Ansicht" loading="lazy" width="780" height="1688"></a><figcaption>Mobil: Agenda</figcaption></figure>
+      <figure><a href="assets/content-planner/mobile-draft.webp" target="_blank" rel="noopener"><img src="assets/content-planner/mobile-draft.webp" alt="Mobiler Entwurfseditor" loading="lazy" width="780" height="1688"></a><figcaption>Mobil: Editor</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="project" id="arbeitsweise">
+  <div class="wrap">
+    <div class="eyebrow">Arbeitsweise</div>
+    <h2>Produkt denken, mit KI-Agents bauen, sauber absichern</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Meine Rolle</h3>
+        <p>Konzept, Produktdesign und Umsetzung beider Produkte: von der Problemdefinition über Datenmodell und Oberfläche bis zu Tests und Betrieb.</p>
+      </div>
+      <div class="card">
+        <h3>Agentic Engineering</h3>
+        <p>Ich entwickle mit KI-Coding-Agents (Claude Code, Codex) nach festen Regeln: dokumentierte Invarianten, ein Branch pro Arbeitspaket, Lint, Typecheck und Tests vor jedem Commit, unabhängiges Review vor jedem Merge.</p>
+      </div>
+    </div>
+    <p class="note">Alle Screenshots zeigen lokale Demo-Umgebungen mit erfundenen Daten. Video- und Bildvorschauen sind Platzhalter. Der Quellcode ist privat.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">Marko Kraljević · Project Showcase</div>
+</footer>
+</body>
+</html>
