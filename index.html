@@ -34,7 +34,7 @@
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent-strong); }
   .chips { display: flex; flex-wrap: wrap; gap: var(--s-2); margin: 0; padding: 0; list-style: none; }
   .chips li { font-size: var(--fs-sm); padding: 4px 12px; border-radius: var(--r-pill); background: var(--bg-soft); border: var(--hair); color: var(--ink-2); }
-  .chips.teal li { background: var(--accent-soft); border-color: transparent; color: var(--accent-strong); }
+  .chips.teal li { background: var(--accent-soft); border-color: transparent; color: var(--accent-hover); }
 
   /* Produktbild auf getönter Fläche */
   .canvas { background: var(--accent-soft); border-radius: var(--r-lg); padding: clamp(12px, 3vw, 40px); }
@@ -65,6 +65,7 @@
   .hero-copy { max-width: 760px; }
   .hero h1 { font-size: var(--fs-3xl); line-height: var(--lh-tight); margin: var(--s-5) 0 var(--s-5); }
   .hero h1 .hl { color: var(--accent-strong); }
+  .nw { white-space: nowrap; }
   .hero .lead { font-size: var(--fs-lg); color: var(--ink-2); max-width: 58ch; margin: 0 0 var(--s-6); }
   .actions { display: flex; flex-wrap: wrap; gap: var(--s-3); }
   .hero-visual { position: relative; margin-top: var(--s-8); }
@@ -107,7 +108,7 @@
   .ps { display: grid; gap: var(--s-6); align-content: start; }
   .tag { display: inline-block; font-size: var(--fs-xs); font-weight: 500; padding: 3px 10px; border-radius: var(--r-pill); margin-bottom: var(--s-3); }
   .tag.problem { background: #fbeee9; color: #8a3f26; }
-  .tag.solution { background: var(--accent-soft); color: var(--accent-strong); }
+  .tag.solution { background: var(--accent-soft); color: var(--accent-hover); }
 
   .steps { list-style: none; margin: var(--s-4) 0 0; padding: 0; counter-reset: step; }
   .steps li { counter-increment: step; display: grid; grid-template-columns: 28px 1fr; gap: var(--s-3); padding-bottom: var(--s-4); position: relative; }
@@ -122,7 +123,7 @@
   .dgrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-4); }
   .dgrid li { border: var(--hair); border-radius: var(--r-lg); padding: var(--s-5); background: var(--surface); }
   .dgrid li.wide { grid-column: 1 / -1; }
-  .dgrid .n { display: inline-grid; place-items: center; min-width: 28px; height: 22px; padding: 0 6px; border-radius: var(--r-pill); background: var(--accent-soft); font: 500 var(--fs-xs)/1 var(--font-mono); color: var(--accent-strong); }
+  .dgrid .n { display: inline-grid; place-items: center; min-width: 28px; height: 22px; padding: 0 6px; border-radius: var(--r-pill); background: var(--accent-soft); font: 500 var(--fs-xs)/1 var(--font-mono); color: var(--accent-hover); }
   .dgrid h4 { font-size: var(--fs-md); margin: var(--s-3) 0 var(--s-2); letter-spacing: -.01em; }
   .dgrid p { margin: 0; color: var(--ink-2); font-size: var(--fs-sm); line-height: 1.65; max-width: 80ch; }
   .stack-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3) var(--s-4); margin-top: var(--s-6); }
@@ -132,7 +133,7 @@
   .gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--s-6) var(--s-5); margin-top: var(--s-8); }
   .gallery .c7 { grid-column: span 7; } .gallery .c5 { grid-column: span 5; } .gallery .c6 { grid-column: span 6; } .gallery .c12 { grid-column: span 12; }
   .gallery .fig { display: flex; flex-direction: column; }
-  .gallery .canvas { flex: 1; display: flex; align-items: center; }
+  .gallery .canvas { flex: 1; display: flex; align-items: center; justify-content: center; }
   .phones { display: flex; justify-content: center; align-items: flex-start; gap: clamp(16px, 4vw, 48px); }
   .gallery .canvas.phones { align-items: center; }
   .phones .shot { max-width: 240px; border-radius: 20px; }
@@ -213,7 +214,7 @@
   <div class="wrap">
     <div class="hero-copy">
       <span class="pill"><span class="dot" aria-hidden="true"></span>Project Showcase · AI Engineering &amp; Produkt</span>
-      <h1>Ich baue KI&#8209;Produkte, die <span class="hl">im Alltag</span> bestehen.</h1>
+      <h1>Ich baue <span class="nw">KI-Produkte</span>, die <span class="hl">im Alltag</span> bestehen.</h1>
       <p class="lead">Zwei Produkte, die ich allein konzipiert, gestaltet und umgesetzt habe: vom Problem über Datenmodell und Oberfläche bis zu Tests und Betrieb.</p>
       <div class="actions">
         <a class="btn btn-primary" href="#projekte">Projekte ansehen <span aria-hidden="true">↓</span></a>
