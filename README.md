@@ -4,7 +4,7 @@ Zwei KI-Produkte, die ich allein konzipiert, gestaltet und umgesetzt habe: vom P
 
 **→ [Zur Showcase-Seite](https://markokralj-cloud.github.io/project-showcase/)**
 
-Dieses Repository enthält nur die Präsentation. Der Quellcode beider Produkte ist privat, durch Architektur, Tests und Entscheidungen führe ich gern in einem Gespräch.
+Dieses Repository enthält nur die Präsentation. Der Quellcode beider Produkte ist privat. Durch Architektur, Tests und Entscheidungen führe ich gern in einem Gespräch.
 
 | | Projekt | Worum es geht | Kern |
 |---|---|---|---|

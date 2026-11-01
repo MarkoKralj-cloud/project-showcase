@@ -6,9 +6,7 @@
 <title>Marko Kraljević – Project Showcase</title>
 <meta name="description" content="Zwei selbst konzipierte und gebaute KI-Produkte: AI Inbox für Kundensupport und Content Planner für Social-Media-Veröffentlichung.">
 <meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="tokens.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; }
@@ -113,7 +111,7 @@
   .pipeline div:last-child { border-right: 0; }
   .pipeline .mono { color: var(--accent); }
   .pipeline strong { display: block; margin-top: var(--s-2); font-weight: 600; font-size: var(--fs-sm); }
-  .pipeline span { display: block; color: var(--ink-3); font-size: var(--fs-xs); margin-top: var(--s-1); line-height: 1.45; }
+  .pipeline span:not(.mono) { display: block; color: var(--ink-3); font-size: var(--fs-xs); margin-top: var(--s-1); line-height: 1.45; }
 
   /* Footer */
   footer { background: var(--ink); color: var(--paper); padding: var(--s-8) 0 var(--s-7); }
@@ -127,7 +125,7 @@
 
   /* Lightbox */
   dialog { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 94vh; }
-  dialog::backdrop { background: rgba(20, 18, 15, .88); }
+  dialog::backdrop { background: rgba(20, 18, 15, .97); }
   dialog img { max-width: 96vw; max-height: 88vh; width: auto; border: var(--rule); }
   dialog .close { position: fixed; top: var(--s-4); right: var(--s-4); background: var(--paper); color: var(--ink); border: 0; border-radius: var(--radius); padding: var(--s-2) var(--s-3); font: 500 var(--fs-sm) var(--font-text); cursor: pointer; }
   dialog p { color: var(--paper); font-size: var(--fs-sm); margin: var(--s-3) 0 0; }
@@ -139,7 +137,7 @@
     .gallery.g-a .tall { grid-row: auto; }
     .g-b .w7, .g-b .w5, .g-b .w6 { grid-column: span 2; }
     .g-b .phone { grid-column: span 1; }
-    .gallery.g-a > :not(.phone) { grid-column: span 2; }
+    .gallery.g-a > * { grid-column: span 2; }
     .pipeline { grid-template-columns: 1fr; }
     .pipeline div { border-right: 0; border-bottom: var(--hair); }
     .pipeline div:last-child { border-bottom: 0; }
@@ -177,7 +175,7 @@
         <h1>Ich baue KI-Produkte, die <em>im Alltag</em> bestehen.</h1>
         <p class="lead">Zwei Produkte, die ich allein konzipiert, gestaltet und umgesetzt habe: vom Problem über Datenmodell und Oberfläche bis zu Tests und Betrieb.</p>
       </div>
-      <dl class="facts" aria-label="Auf einen Blick">
+      <dl class="facts">
         <div><dt>Produkte, end-to-end gebaut</dt><dd>2</dd></div>
         <div><dt>Automatisierte Tests in der AI Inbox</dt><dd>~490</dd></div>
         <div><dt>Plattformregeln im Preflight-Check</dt><dd>18</dd></div>
@@ -222,7 +220,7 @@
         <p>Die KI schreibt den Entwurf und belegt ihn mit Quellen, der Mensch behält die Kontrolle. Pro Kategorie lässt sich festlegen, was geprüft werden muss und was automatisch versendet werden darf.</p>
       </div>
       <div>
-        <div class="block-title">Wie ein Fall durchläuft</div>
+        <h3 class="block-title">Wie ein Fall durchläuft</h3>
         <ol class="steps">
           <li><div><strong>Eingang</strong> <span>per IMAP oder Webhook, als Ticket gespeichert</span></div></li>
           <li><div><strong>Klassifizierung</strong> <span>nach Anliegen, Thema, Dringlichkeit und Stimmung</span></div></li>
@@ -235,7 +233,7 @@
     </div>
 
     <section class="decisions" aria-labelledby="d-inbox">
-      <div class="block-title" id="d-inbox">Entscheidungen, auf die es ankam</div>
+      <h3 class="block-title" id="d-inbox">Entscheidungen, auf die es ankam</h3>
       <ol>
         <li><h4>Lieber prüfen als doppelt senden</h4><p>Ist unklar, ob eine E-Mail beim Mailserver angekommen ist, wird sie nicht automatisch erneut verschickt. Nur ein bestätigtes „nicht gesendet“ erlaubt einen neuen Versuch.</p></li>
         <li><h4>Tickets als Zustandsmaschine</h4><p>Jeder Fall bewegt sich über definierte Zustände. Das verhindert widersprüchliche Sonderfälle und macht Fehler nachvollziehbar.</p></li>
@@ -287,7 +285,7 @@
         <p>Ein Upload, ein Kalender. Die KI schlägt Caption und Hashtags pro Plattform vor, ein Regelwerk prüft vor der Veröffentlichung, und ein Worker veröffentlicht zum geplanten Zeitpunkt.</p>
       </div>
       <div>
-        <div class="block-title">Vom Video zum Post</div>
+        <h3 class="block-title">Vom Video zum Post</h3>
         <ol class="steps">
           <li><div><strong>Upload</strong> <span>Reel oder YouTube-Longform in S3-kompatiblen Speicher</span></div></li>
           <li><div><strong>Transkript</strong> <span>Spracherkennung mit Whisper</span></div></li>
@@ -300,7 +298,7 @@
     </div>
 
     <section class="decisions" aria-labelledby="d-planner">
-      <div class="block-title" id="d-planner">Entscheidungen, auf die es ankam</div>
+      <h3 class="block-title" id="d-planner">Entscheidungen, auf die es ankam</h3>
       <ol>
         <li><h4>Regeln vor Reichweitenverlust</h4><p>Der Preflight prüft aus den Richtlinien von Meta, TikTok und YouTube abgeleitete Regeln, etwa fremde Wasserzeichen, doppelte Captions, zu viele Hashtags oder Clickbait-Titel. Kritische Funde verlangen vor dem Einplanen eine ausdrückliche Bestätigung, weichere erscheinen als Warnung.</p></li>
         <li><h4>Worker getrennt von der Web-App</h4><p>Scheduling, Veröffentlichung und Token-Erneuerung laufen in einem eigenen Prozess, unabhängig davon, ob jemand die Oberfläche geöffnet hat.</p></li>
@@ -370,7 +368,7 @@
     btn.addEventListener('click', () => {
       big.src = btn.dataset.full;
       big.alt = btn.querySelector('img').alt;
-      cap.textContent = btn.closest('figure').querySelector('figcaption').textContent.trim();
+      cap.textContent = [...btn.closest('figure').querySelectorAll('figcaption span')].map((s) => s.textContent.trim()).join(' · ');
       box.showModal();
     });
   });

@@ -1,7 +1,7 @@
 # DESIGN – Project Showcase
 
 ## Gefühlssatz
-„Moderner und individueller, ohne klassisches KI-Slop-Design – ansprechend für Unternehmen, die sehen wollen, was der Bewerber schon produziert hat."
+„Modern und individuell, ohne generische Template-Optik – ansprechend für Unternehmen, die sehen wollen, was der Bewerber schon produziert hat."
 
 ## Leitidee
 Ein Bewerber, der Produkte nicht nur baut, sondern bis in den Betrieb absichert. Deshalb liest sich die Seite wie ein technisches Datenblatt mit editorialer Typografie: Fakten vor Adjektiven, Entscheidungen mit Begründung, Screens als nummerierte Abbildungen.
@@ -17,7 +17,7 @@ Ein Bewerber, der Produkte nicht nur baut, sondern bis in den Betrieb absichert.
 | Motion | Minimal: Hover-Pfeile, Lightbox |
 
 ## Palette
-Warmes Papier (`--paper`), Tinte (`--ink`), ein Signalakzent Zinnober (`--accent`) nur für Nummern, Marker und Links. Kein Türkis (das ist das Produkt-Branding, nicht die Person).
+Warmes Papier (`--paper`), Tinte (`--ink`), ein Signalakzent Zinnober (`--accent`) nur für Nummern, Marker, die eine betonte Hero-Phrase und den einen CTA. Kein Türkis (das ist das Produkt-Branding, nicht die Person).
 
 ## Do
 - Jede Aussage im Code belegbar; Zahlen nur, wenn nachgezählt
