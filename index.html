@@ -3,189 +3,379 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Project Showcase – Marko Kraljević</title>
-<meta name="description" content="Zwei selbst entwickelte KI-Produkte: ein KI-Postfach für Kundensupport und ein Content-Planer mit automatischer Veröffentlichung.">
+<title>Marko Kraljević – Project Showcase</title>
+<meta name="description" content="Zwei selbst konzipierte und gebaute KI-Produkte: AI Inbox für Kundensupport und Content Planner für Social-Media-Veröffentlichung.">
 <meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
 <style>
-  :root {
-    --bg: #fafaf8; --surface: #ffffff; --text: #16201e; --muted: #5b6764;
-    --line: #e3e6e3; --accent: #1f7a6f; --accent-soft: #e4f1ee; --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 var(--fs-md)/var(--lh-text) var(--font-text); -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+  .mono { font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .06em; text-transform: uppercase; }
+  .muted { color: var(--ink-3); }
+  .skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: var(--paper); padding: var(--s-2) var(--s-3); }
+  .skip:focus { left: var(--s-3); top: var(--s-3); z-index: 10; }
+
+  /* Topbar */
+  .topbar { border-bottom: var(--hair); }
+  .topbar .wrap { display: flex; justify-content: space-between; align-items: center; gap: var(--s-4); height: 56px; }
+  .topbar nav { display: flex; gap: var(--s-5); }
+  .topbar a { text-decoration: none; color: var(--ink-2); }
+  .topbar a:hover { color: var(--accent); }
+  .name { font-weight: 600; color: var(--ink) !important; }
+
+  /* Hero */
+  .hero { padding: var(--s-9) 0 var(--s-8); }
+  .hero-grid { display: grid; grid-template-columns: 7fr 4fr; gap: var(--s-8); align-items: end; }
+  .hero h1 { font: 400 var(--fs-3xl)/var(--lh-tight) var(--font-display); letter-spacing: -.02em; margin: var(--s-5) 0 var(--s-5); }
+  .hero h1 em { color: var(--accent); }
+  .hero .lead { font-size: var(--fs-lg); color: var(--ink-2); max-width: 46ch; margin: 0; }
+  .facts { margin: 0; border-top: var(--rule); }
+  .facts div { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: var(--s-4); padding: var(--s-3) 0; border-bottom: var(--hair); }
+  .facts dt { color: var(--ink-2); font-size: var(--fs-sm); }
+  .facts dd { margin: 0; font: 400 var(--fs-xl)/1 var(--font-display); }
+
+  /* Index */
+  .index { border-top: var(--rule); margin-top: var(--s-8); }
+  .index a { display: grid; grid-template-columns: 64px 1.1fr 1.4fr 40px; gap: var(--s-5); align-items: center; padding: var(--s-5) 0; border-bottom: var(--hair); text-decoration: none; transition: background var(--t-fast) var(--ease); }
+  .index a:hover { background: var(--paper-2); }
+  .index .no { font: 400 var(--fs-xl)/1 var(--font-display); color: var(--accent); }
+  .index .t { font: 400 var(--fs-xl)/var(--lh-snug) var(--font-display); }
+  .index .d { color: var(--ink-2); font-size: var(--fs-sm); }
+  .index .arr { justify-self: end; transition: transform var(--t-fast) var(--ease); }
+  .index a:hover .arr { transform: translateX(4px); color: var(--accent); }
+
+  /* Case study */
+  .case { padding: var(--section) 0 0; }
+  .case-head { display: grid; grid-template-columns: 7fr 4fr; gap: var(--s-8); align-items: end; padding-bottom: var(--s-7); border-bottom: var(--rule); }
+  .case-head h2 { font: 400 var(--fs-2xl)/var(--lh-tight) var(--font-display); letter-spacing: -.015em; margin: var(--s-3) 0 var(--s-4); }
+  .case-head p { color: var(--ink-2); font-size: var(--fs-lg); margin: 0; max-width: 52ch; }
+  .label { display: flex; gap: var(--s-3); align-items: center; }
+  .label b { color: var(--accent); font-weight: 500; }
+
+  .spec { margin: 0; display: grid; gap: 0; }
+  .spec div { display: grid; grid-template-columns: 88px 1fr; gap: var(--s-4); padding: var(--s-2) 0; border-bottom: var(--hair); font-size: var(--fs-sm); }
+  .spec div:first-child { border-top: var(--hair); }
+  .spec dt { color: var(--ink-3); }
+  .spec dd { margin: 0; }
+
+  .fig { margin: 0; }
+  .fig .frame { display: block; width: 100%; padding: 0; border: var(--rule); border-radius: var(--radius); background: var(--surface); overflow: hidden; cursor: zoom-in; }
+  .fig .frame img { width: 100%; transition: transform var(--t-med) var(--ease); }
+  .fig .frame:hover img { transform: scale(1.012); }
+  .fig figcaption { display: flex; gap: var(--s-3); margin-top: var(--s-3); font-size: var(--fs-sm); color: var(--ink-2); }
+  .fig figcaption .mono { color: var(--ink-3); flex: none; padding-top: 2px; }
+  .fig-hero { margin-top: var(--s-7); }
+
+  .body-grid { display: grid; grid-template-columns: 5fr 6fr; gap: var(--s-8); margin-top: var(--s-8); }
+  .prose h3, .block-title { font: 400 var(--fs-xl)/var(--lh-snug) var(--font-display); margin: 0 0 var(--s-3); }
+  .prose p { color: var(--ink-2); margin: 0 0 var(--s-6); max-width: 60ch; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: step; border-top: var(--rule); }
+  .steps li { counter-increment: step; display: grid; grid-template-columns: 40px 1fr; gap: var(--s-4); padding: var(--s-3) 0; border-bottom: var(--hair); }
+  .steps li::before { content: counter(step, decimal-leading-zero); font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--accent); padding-top: 4px; }
+  .steps strong { font-weight: 600; }
+  .steps span { color: var(--ink-2); }
+
+  .decisions { margin-top: var(--s-8); }
+  .decisions ol { list-style: none; margin: var(--s-4) 0 0; padding: 0; border-top: var(--rule); }
+  .decisions ol > li { display: grid; grid-template-columns: 4fr 7fr; gap: var(--s-8); padding: var(--s-5) 0; border-bottom: var(--hair); }
+  .decisions h4 { font: 600 var(--fs-md)/var(--lh-snug) var(--font-text); margin: 0; }
+  .decisions p { margin: 0; color: var(--ink-2); max-width: 62ch; }
+
+  .stack { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-4); margin: var(--s-6) 0 0; padding: 0; list-style: none; font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-2); }
+  .stack li::after { content: "/"; margin-left: var(--s-4); color: var(--line); }
+  .stack li:last-child::after { content: none; }
+
+  .gallery { display: grid; gap: var(--s-7) var(--s-6); margin-top: var(--s-8); }
+  .gallery.g-a { grid-template-columns: 7fr 5fr; }
+  .gallery.g-a .tall { grid-row: span 2; }
+  .gallery.g-b { grid-template-columns: repeat(12, 1fr); }
+  .g-b .w7 { grid-column: span 7; } .g-b .w5 { grid-column: span 5; } .g-b .w6 { grid-column: span 6; }
+  .phone .frame { max-width: 300px; }
+
+  /* Arbeitsweise */
+  .method { padding: var(--section) 0; }
+  .method-grid { display: grid; grid-template-columns: 4fr 7fr; gap: var(--s-8); border-top: var(--rule); padding-top: var(--s-7); }
+  .method h2 { font: 400 var(--fs-2xl)/var(--lh-tight) var(--font-display); margin: var(--s-3) 0 0; letter-spacing: -.015em; }
+  .method p { color: var(--ink-2); font-size: var(--fs-lg); margin: 0 0 var(--s-6); max-width: 56ch; }
+  .pipeline { display: grid; grid-template-columns: repeat(5, 1fr); border: var(--rule); }
+  .pipeline div { padding: var(--s-4); border-right: var(--hair); }
+  .pipeline div:last-child { border-right: 0; }
+  .pipeline .mono { color: var(--accent); }
+  .pipeline strong { display: block; margin-top: var(--s-2); font-weight: 600; font-size: var(--fs-sm); }
+  .pipeline span { display: block; color: var(--ink-3); font-size: var(--fs-xs); margin-top: var(--s-1); line-height: 1.45; }
+
+  /* Footer */
+  footer { background: var(--ink); color: var(--paper); padding: var(--s-8) 0 var(--s-7); }
+  footer .wrap { display: grid; grid-template-columns: 7fr 4fr; gap: var(--s-8); align-items: end; }
+  footer h2 { font: 400 var(--fs-2xl)/var(--lh-tight) var(--font-display); margin: 0 0 var(--s-4); letter-spacing: -.015em; }
+  footer p { color: #c9c3b6; margin: 0; max-width: 52ch; }
+  .btn { display: inline-flex; align-items: center; gap: var(--s-3); padding: var(--s-3) var(--s-5); background: var(--accent); color: var(--accent-ink); text-decoration: none; border-radius: var(--radius); font-weight: 500; transition: background var(--t-fast) var(--ease); }
+  .btn:hover { background: #9a3110; }
+  .btn:focus-visible { outline-color: var(--paper); }
+  .fine { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; border-top: 1px solid #3a362f; padding-top: var(--s-5); margin-top: var(--s-6); color: #a29b8e; }
+
+  /* Lightbox */
+  dialog { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 94vh; }
+  dialog::backdrop { background: rgba(20, 18, 15, .88); }
+  dialog img { max-width: 96vw; max-height: 88vh; width: auto; border: var(--rule); }
+  dialog .close { position: fixed; top: var(--s-4); right: var(--s-4); background: var(--paper); color: var(--ink); border: 0; border-radius: var(--radius); padding: var(--s-2) var(--s-3); font: 500 var(--fs-sm) var(--font-text); cursor: pointer; }
+  dialog p { color: var(--paper); font-size: var(--fs-sm); margin: var(--s-3) 0 0; }
+
+  @media (max-width: 900px) {
+    .hero-grid, .case-head, .body-grid, .method-grid, footer .wrap { grid-template-columns: 1fr; gap: var(--s-6); }
+    .decisions ol > li { grid-template-columns: 1fr; gap: var(--s-2); }
+    .gallery.g-a, .gallery.g-b { grid-template-columns: 1fr 1fr; }
+    .gallery.g-a .tall { grid-row: auto; }
+    .g-b .w7, .g-b .w5, .g-b .w6 { grid-column: span 2; }
+    .g-b .phone { grid-column: span 1; }
+    .gallery.g-a > :not(.phone) { grid-column: span 2; }
+    .pipeline { grid-template-columns: 1fr; }
+    .pipeline div { border-right: 0; border-bottom: var(--hair); }
+    .pipeline div:last-child { border-bottom: 0; }
   }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #111615; --surface: #19201e; --text: #e8edeb; --muted: #9aa6a2; --line: #2a3330; --accent: #5cc2b3; --accent-soft: #1d2f2b; --shadow: none; }
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif; }
-  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
-  header { padding: 72px 0 40px; }
-  .eyebrow { font: 600 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
-  h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.1; margin: 14px 0 16px; letter-spacing: -.02em; }
-  h2 { font-size: clamp(26px, 3.5vw, 36px); line-height: 1.15; margin: 8px 0 12px; letter-spacing: -.01em; }
-  h3 { font-size: 17px; margin: 0 0 8px; }
-  p { margin: 0 0 12px; }
-  .lead { font-size: 19px; color: var(--muted); max-width: 720px; }
-  nav.toc { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
-  nav.toc a { text-decoration: none; color: var(--text); border: 1px solid var(--line); background: var(--surface); padding: 8px 14px; border-radius: 999px; font-size: 14px; }
-  nav.toc a:hover { border-color: var(--accent); color: var(--accent); }
-  section.project { padding: 56px 0; border-top: 1px solid var(--line); }
-  .grid2 { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; margin: 28px 0; }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
-  ul { margin: 0; padding-left: 20px; } li { margin: 4px 0; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-  .tag { font: 500 12.5px/1 ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--accent-soft); color: var(--accent); padding: 6px 9px; border-radius: 6px; }
-  figure { margin: 0; }
-  figure a { display: block; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface); }
-  figure img { display: block; width: 100%; height: auto; }
-  figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; }
-  .hero-shot { margin: 8px 0 24px; }
-  .shots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .phones { display: grid; grid-template-columns: repeat(3, minmax(0, 260px)); gap: 24px; margin-top: 24px; }
-  .flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 4px 0 0; font-size: 14px; }
-  .flow span { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
-  .flow i { color: var(--muted); font-style: normal; }
-  .note { font-size: 14px; color: var(--muted); }
-  footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 14px; }
-  a { color: var(--accent); }
-  @media (max-width: 820px) {
-    header { padding-top: 48px; }
-    .grid2, .shots { grid-template-columns: 1fr; }
-    .phones { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 600px) {
+    .hero { padding-top: var(--s-8); }
+    .topbar nav a:not(.gh) { display: none; }
+    .index a { grid-template-columns: 40px 1fr 24px; gap: var(--s-3); }
+    .index .d { grid-column: 2 / 3; grid-row: 2; }
+    .index .arr { grid-row: 1; grid-column: 3; }
   }
 </style>
 </head>
 <body>
-<header class="wrap">
-  <div class="eyebrow">Project Showcase</div>
-  <h1>KI-Produkte, von der Idee bis zum laufenden System</h1>
-  <p class="lead">Zwei Produkte, die ich konzipiert, gestaltet und umgesetzt habe: ein KI-Postfach, das Support-Anfragen mit Quellen beantwortet, und ein Content-Planer, der Videos transkribiert, Captions schreibt und automatisch veröffentlicht.</p>
-  <nav class="toc" aria-label="Projekte">
-    <a href="#ai-inbox">AI Inbox</a>
-    <a href="#content-planner">Content Planner</a>
-    <a href="#arbeitsweise">Arbeitsweise</a>
-  </nav>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="name" href="#top">Marko Kraljević</a>
+    <nav aria-label="Seitennavigation">
+      <a href="#ai-inbox">AI Inbox</a>
+      <a href="#content-planner">Content Planner</a>
+      <a href="#arbeitsweise">Arbeitsweise</a>
+      <a class="gh" href="https://github.com/MarkoKralj-cloud" rel="me">GitHub ↗</a>
+    </nav>
+  </div>
 </header>
 
-<main>
-<section class="project" id="ai-inbox">
+<main id="main">
+<section class="hero" id="top">
   <div class="wrap">
-    <div class="eyebrow">Projekt 1 · SaaS</div>
-    <h2>AI Inbox – KI-gestützter Kundensupport</h2>
-    <p class="lead">Eingehende Support-E-Mails werden klassifiziert, mit der eigenen Wissensdatenbank abgeglichen und als Antwortentwurf vorbereitet. Ein Mensch prüft und gibt frei; Routinefälle können je Kategorie automatisch versendet werden.</p>
-
-    <figure class="hero-shot">
-      <a href="assets/ai-inbox/ticket-detail.webp" target="_blank" rel="noopener"><img src="assets/ai-inbox/ticket-detail.webp" alt="Posteingang mit geöffnetem Fall, KI-Antwortentwurf mit Konfidenz und Co-Pilot-Spalte mit Quellen aus der Wissensdatenbank" width="2880" height="1800"></a>
-      <figcaption>Fallansicht: Kundenanfrage, KI-Entwurf mit Konfidenz und die Quellen, auf die sich der Entwurf stützt.</figcaption>
-    </figure>
-
-    <div class="grid2">
-      <div class="card">
-        <h3>Was das System macht</h3>
-        <ul>
-          <li>E-Mail-Eingang per IMAP, Versand per SMTP</li>
-          <li>Klassifizierung nach Anliegen, Thema, Dringlichkeit und Stimmung</li>
-          <li>Retrieval-Augmented Generation über Dokumente, URLs und Notion</li>
-          <li>Antwortentwurf mit Konfidenzwert und nachvollziehbaren Quellen</li>
-          <li>Freigabe-Workflow: menschliche Prüfung oder Auto-Versand je Kategorie</li>
-          <li>Auswertung von Akzeptanzrate, Bearbeitungsrate und Wissenslücken</li>
-          <li>Mehrmandantenfähig, mit Teamrollen, Audit-Log und Abrechnung</li>
-        </ul>
+    <div class="hero-grid">
+      <div>
+        <div class="mono muted">Project Showcase · AI Engineering &amp; Produkt</div>
+        <h1>Ich baue KI-Produkte, die <em>im Alltag</em> bestehen.</h1>
+        <p class="lead">Zwei Produkte, die ich allein konzipiert, gestaltet und umgesetzt habe: vom Problem über Datenmodell und Oberfläche bis zu Tests und Betrieb.</p>
       </div>
-      <div class="card">
-        <h3>Ablauf</h3>
-        <div class="flow"><span>Eingang</span><i>→</i><span>Klassifizierung</span><i>→</i><span>Wissenssuche</span><i>→</i><span>Entwurf</span><i>→</i><span>Prüfung</span><i>→</i><span>Versand</span></div>
-        <h3 style="margin-top:20px">Technik</h3>
-        <div class="tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span><span class="tag">Node.js / Express</span><span class="tag">PostgreSQL</span><span class="tag">OpenAI API</span><span class="tag">RAG</span><span class="tag">Clerk</span><span class="tag">Stripe</span><span class="tag">Sentry</span><span class="tag">Vitest</span><span class="tag">Playwright</span></div>
-        <h3 style="margin-top:20px">Engineering-Schwerpunkte</h3>
-        <ul>
-          <li>Ticket-Zustandsmaschine statt verstreuter Sonderfälle</li>
-          <li>Versandgarantie: keine Doppelzustellung bei unklarem Ausgang</li>
-          <li>Strikte Mandantentrennung</li>
-          <li>Logs ohne personenbezogene Daten, bevor sie Sentry erreichen</li>
-          <li>Knapp 500 automatisierte Tests plus visuelle Regressionstests</li>
-        </ul>
-      </div>
+      <dl class="facts" aria-label="Auf einen Blick">
+        <div><dt>Produkte, end-to-end gebaut</dt><dd>2</dd></div>
+        <div><dt>Automatisierte Tests in der AI Inbox</dt><dd>~490</dd></div>
+        <div><dt>Plattformregeln im Preflight-Check</dt><dd>18</dd></div>
+        <div><dt>Plattformen mit Auto-Veröffentlichung</dt><dd>4</dd></div>
+      </dl>
     </div>
 
-    <div class="shots">
-      <figure><a href="assets/ai-inbox/dashboard.webp" target="_blank" rel="noopener"><img src="assets/ai-inbox/dashboard.webp" alt="Startseite mit Fällen, die auf Freigabe warten, sortiert nach Dringlichkeit" loading="lazy" width="2880" height="1800"></a><figcaption>Start: Was heute ansteht, sortiert nach Dringlichkeit und Wartezeit.</figcaption></figure>
-      <figure><a href="assets/ai-inbox/analytics.webp" target="_blank" rel="noopener"><img src="assets/ai-inbox/analytics.webp" alt="KI-Leistung mit Akzeptanzrate, Konfidenz und Entwurfsqualität nach Kategorie" loading="lazy" width="2880" height="1800"></a><figcaption>KI-Leistung: Akzeptanz- und Bearbeitungsrate je Kategorie.</figcaption></figure>
-      <figure><a href="assets/ai-inbox/knowledge.webp" target="_blank" rel="noopener"><img src="assets/ai-inbox/knowledge.webp" alt="Wissensdatenbank mit Quellen und Wissenslücken-Analyse" loading="lazy" width="2880" height="1800"></a><figcaption>Wissensdatenbank mit automatischer Wissenslücken-Analyse.</figcaption></figure>
-      <figure><a href="assets/ai-inbox/mobile-inbox.webp" target="_blank" rel="noopener"><img src="assets/ai-inbox/mobile-inbox.webp" alt="Mobile Ansicht des Posteingangs" loading="lazy" width="780" height="1688" style="max-width:300px;margin:0 auto"></a><figcaption>Mobile Ansicht des Posteingangs.</figcaption></figure>
-    </div>
+    <nav class="index" aria-label="Projekte">
+      <a href="#ai-inbox"><span class="no">01</span><span class="t">AI Inbox</span><span class="d">KI-Antwortentwürfe für Support-E-Mails, mit Quellen und Freigabe-Workflow</span><span class="arr" aria-hidden="true">→</span></a>
+      <a href="#content-planner"><span class="no">02</span><span class="t">Content Planner</span><span class="d">Vom Video zum geplanten Post auf Instagram, Facebook, TikTok und YouTube</span><span class="arr" aria-hidden="true">→</span></a>
+    </nav>
   </div>
 </section>
 
-<section class="project" id="content-planner">
+<!-- 01 AI Inbox -->
+<article class="case" id="ai-inbox" aria-labelledby="t-inbox">
   <div class="wrap">
-    <div class="eyebrow">Projekt 2 · Web-App</div>
-    <h2>Content Planner – vom Video zum geplanten Post</h2>
-    <p class="lead">Videos hochladen, transkribieren lassen und pro Plattform passende Captions und Hashtags erhalten. Die Posts werden im Kalender geplant, vor der Veröffentlichung gegen Plattformregeln geprüft und zum geplanten Zeitpunkt automatisch veröffentlicht.</p>
+    <header class="case-head">
+      <div>
+        <div class="label mono"><b>01</b><span class="muted">Fallstudie · SaaS</span></div>
+        <h2 id="t-inbox">AI Inbox</h2>
+        <p>Support-E-Mails werden klassifiziert, mit der eigenen Wissensdatenbank abgeglichen und als Antwortentwurf vorbereitet. Ein Mensch prüft und gibt frei, Routinefälle gehen je Kategorie automatisch raus.</p>
+      </div>
+      <dl class="spec">
+        <div><dt>Rolle</dt><dd>Konzept, Design, Umsetzung</dd></div>
+        <div><dt>Art</dt><dd>Mehrmandanten-SaaS</dd></div>
+        <div><dt>Kern</dt><dd>RAG, Klassifizierung, Freigabe-Workflow</dd></div>
+        <div><dt>Code</dt><dd>Privat, Einblick im Gespräch</dd></div>
+      </dl>
+    </header>
 
-    <figure class="hero-shot">
-      <a href="assets/content-planner/dashboard-week.webp" target="_blank" rel="noopener"><img src="assets/content-planner/dashboard-week.webp" alt="Wochenkalender mit geplanten Posts für Instagram, Facebook und YouTube und einer Content-Queue" width="2880" height="1800"></a>
-      <figcaption>Planung: Entwürfe aus der Queue per Drag-and-drop auf einen Termin ziehen.</figcaption>
+    <figure class="fig fig-hero">
+      <button class="frame" type="button" data-full="assets/ai-inbox/ticket-detail.webp"><img src="assets/ai-inbox/ticket-detail.webp" alt="Posteingang mit geöffnetem Fall: Kundenanfrage, KI-Antwortentwurf mit 86 % Konfidenz und Co-Pilot-Spalte mit drei Quellen aus der Wissensdatenbank" width="2880" height="1800"></button>
+      <figcaption><span class="mono">Abb. 1.1</span><span>Fallansicht: Anfrage, KI-Entwurf mit Konfidenz und die Wissensquellen, auf die sich der Entwurf stützt.</span></figcaption>
     </figure>
 
-    <div class="grid2">
-      <div class="card">
-        <h3>Was das System macht</h3>
-        <ul>
-          <li>Video-Upload in einen S3-kompatiblen Speicher</li>
-          <li>Transkription und KI-Captions pro Plattform, mit Markenstimme und Hashtag-Pool</li>
-          <li>Wochen- und Monatskalender mit Drag-and-drop und Zeitvorschlag aus Reichweitendaten</li>
-          <li>Automatische Veröffentlichung: Instagram und Facebook direkt über die Meta Graph API, TikTok und YouTube über einen Publishing-Dienst</li>
-          <li>Preflight-Regelwerk mit 18 Plattformregeln gegen Reichweitenverlust (z. B. doppelte Captions, Hashtag-Anzahl, Clickbait)</li>
-          <li>Archiv veröffentlichter Inhalte, Fehler- und Wartungszustände</li>
-        </ul>
+    <div class="body-grid">
+      <div class="prose">
+        <h3>Problem</h3>
+        <p>Support-Postfächer füllen sich mit wiederkehrenden Fragen, deren Antworten längst irgendwo dokumentiert sind. Vollautomatische Antworten sind aber riskant: Eine falsche oder doppelt verschickte E-Mail kostet mehr Vertrauen, als sie Zeit spart.</p>
+        <h3>Lösung</h3>
+        <p>Die KI schreibt den Entwurf und belegt ihn mit Quellen, der Mensch behält die Kontrolle. Pro Kategorie lässt sich festlegen, was geprüft werden muss und was automatisch versendet werden darf.</p>
       </div>
-      <div class="card">
-        <h3>Ablauf</h3>
-        <div class="flow"><span>Upload</span><i>→</i><span>Transkript</span><i>→</i><span>Caption</span><i>→</i><span>Planung</span><i>→</i><span>Preflight</span><i>→</i><span>Veröffentlichung</span></div>
-        <h3 style="margin-top:20px">Technik</h3>
-        <div class="tags"><span class="tag">TypeScript</span><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Tailwind CSS</span><span class="tag">Drizzle ORM</span><span class="tag">PostgreSQL</span><span class="tag">Node.js Worker</span><span class="tag">OpenAI API</span><span class="tag">Whisper</span><span class="tag">S3 Storage</span><span class="tag">Meta Graph API</span><span class="tag">Clerk</span></div>
-        <h3 style="margin-top:20px">Engineering-Schwerpunkte</h3>
-        <ul>
-          <li>Getrennter Worker für Scheduling, Veröffentlichung und Token-Erneuerung</li>
-          <li>Eindeutige Fehlerklassen pro Plattform statt generischer Fehlermeldungen</li>
-          <li>Responsives Designsystem mit Desktop-, Tablet- und Mobil-Navigation</li>
-        </ul>
+      <div>
+        <div class="block-title">Wie ein Fall durchläuft</div>
+        <ol class="steps">
+          <li><div><strong>Eingang</strong> <span>per IMAP oder Webhook, als Ticket gespeichert</span></div></li>
+          <li><div><strong>Klassifizierung</strong> <span>nach Anliegen, Thema, Dringlichkeit und Stimmung</span></div></li>
+          <li><div><strong>Wissenssuche</strong> <span>RAG über Dokumente, URLs und Notion</span></div></li>
+          <li><div><strong>Entwurf</strong> <span>LLM-Antwort mit Konfidenz und Quellenangabe</span></div></li>
+          <li><div><strong>Freigabe</strong> <span>menschliche Prüfung oder Auto-Versand je Kategorie</span></div></li>
+          <li><div><strong>Versand und Auswertung</strong> <span>SMTP-Versand, Akzeptanzrate, Wissenslücken</span></div></li>
+        </ol>
       </div>
     </div>
 
-    <div class="shots">
-      <figure><a href="assets/content-planner/draft-editor.webp" target="_blank" rel="noopener"><img src="assets/content-planner/draft-editor.webp" alt="Entwurfseditor mit KI-Caption, Hashtags und geplantem Termin" loading="lazy" width="2880" height="1800"></a><figcaption>Editor: KI-Vorschlag für Caption und Hashtags, frei anpassbar.</figcaption></figure>
-      <figure><a href="assets/content-planner/dashboard-month.webp" target="_blank" rel="noopener"><img src="assets/content-planner/dashboard-month.webp" alt="Monatsansicht des Content-Kalenders" loading="lazy" width="2880" height="1800"></a><figcaption>Monatsansicht für die längerfristige Planung.</figcaption></figure>
-      <figure><a href="assets/content-planner/upload.webp" target="_blank" rel="noopener"><img src="assets/content-planner/upload.webp" alt="Upload-Seite mit Formatwahl Reel oder YouTube Longform" loading="lazy" width="2880" height="1800"></a><figcaption>Upload mit Formatwahl: Reel oder YouTube-Longform.</figcaption></figure>
-      <figure><a href="assets/content-planner/settings.webp" target="_blank" rel="noopener"><img src="assets/content-planner/settings.webp" alt="Einstellungen mit Content-Vorgaben und Hashtag-Pool" loading="lazy" width="2880" height="1800"></a><figcaption>Einstellungen: Content-Vorgaben und Hashtag-Pool für die Caption-Engine.</figcaption></figure>
-    </div>
-    <div class="phones">
-      <figure><a href="assets/content-planner/mobile-dashboard.webp" target="_blank" rel="noopener"><img src="assets/content-planner/mobile-dashboard.webp" alt="Mobile Agenda-Ansicht" loading="lazy" width="780" height="1688"></a><figcaption>Mobil: Agenda</figcaption></figure>
-      <figure><a href="assets/content-planner/mobile-draft.webp" target="_blank" rel="noopener"><img src="assets/content-planner/mobile-draft.webp" alt="Mobiler Entwurfseditor" loading="lazy" width="780" height="1688"></a><figcaption>Mobil: Editor</figcaption></figure>
+    <section class="decisions" aria-labelledby="d-inbox">
+      <div class="block-title" id="d-inbox">Entscheidungen, auf die es ankam</div>
+      <ol>
+        <li><h4>Lieber prüfen als doppelt senden</h4><p>Ist unklar, ob eine E-Mail beim Mailserver angekommen ist, wird sie nicht automatisch erneut verschickt. Nur ein bestätigtes „nicht gesendet“ erlaubt einen neuen Versuch.</p></li>
+        <li><h4>Tickets als Zustandsmaschine</h4><p>Jeder Fall bewegt sich über definierte Zustände. Das verhindert widersprüchliche Sonderfälle und macht Fehler nachvollziehbar.</p></li>
+        <li><h4>Begründungen müssen stimmen</h4><p>Die Oberfläche zeigt den Grund, der tatsächlich gegriffen hat, warum ein Fall beim Menschen liegt, etwa „sensibel“ statt einer pauschalen Konfidenzschwelle.</p></li>
+        <li><h4>Keine Kundendaten im Monitoring</h4><p>Logs werden vor stdout und Sentry auf freigegebene Diagnosefelder reduziert. Freitexte, URLs und unbekannte Nutzdaten fallen weg.</p></li>
+        <li><h4>Invarianten statt Hoffnung</h4><p>Ticket-Zustände, Versandgarantie und Mandantentrennung sind als Invarianten festgeschrieben. Jede Änderung daran braucht ein eigenes Review. Abgesichert durch knapp 500 automatisierte Tests und visuelle Regressionstests.</p></li>
+      </ol>
+      <ul class="stack" aria-label="Technik">
+        <li>TypeScript</li><li>React</li><li>Vite</li><li>Tailwind CSS</li><li>Node.js (Express)</li><li>PostgreSQL</li><li>OpenAI API</li><li>Clerk</li><li>Stripe</li><li>Sentry</li><li>Vitest</li><li>Playwright</li>
+      </ul>
+    </section>
+
+    <div class="gallery g-a">
+      <figure class="fig"><button class="frame" type="button" data-full="assets/ai-inbox/dashboard.webp"><img src="assets/ai-inbox/dashboard.webp" alt="Startseite: fünf Fälle warten auf Freigabe, sortiert nach Dringlichkeit" loading="lazy" width="2880" height="1800"></button><figcaption><span class="mono">Abb. 1.2</span><span>Start: was ansteht, sortiert nach Dringlichkeit und Wartezeit.</span></figcaption></figure>
+      <figure class="fig phone tall"><button class="frame" type="button" data-full="assets/ai-inbox/mobile-inbox.webp"><img src="assets/ai-inbox/mobile-inbox.webp" alt="Posteingang in der mobilen Ansicht" loading="lazy" width="780" height="1688"></button><figcaption><span class="mono">Abb. 1.3</span><span>Mobiler Posteingang.</span></figcaption></figure>
+      <figure class="fig"><button class="frame" type="button" data-full="assets/ai-inbox/analytics.webp"><img src="assets/ai-inbox/analytics.webp" alt="KI-Leistung: Akzeptanzrate, Konfidenz und Entwurfsqualität nach Kategorie" loading="lazy" width="2880" height="1800"></button><figcaption><span class="mono">Abb. 1.4</span><span>KI-Leistung: Akzeptanz und Bearbeitungsrate je Kategorie.</span></figcaption></figure>
+      <figure class="fig" style="grid-column: 1 / -1"><button class="frame" type="button" data-full="assets/ai-inbox/knowledge.webp"><img src="assets/ai-inbox/knowledge.webp" alt="Wissensdatenbank mit Quellen und automatischer Wissenslücken-Analyse" loading="lazy" width="2880" height="1800"></button><figcaption><span class="mono">Abb. 1.5</span><span>Wissensdatenbank: Themen, bei denen Entwürfe oft überarbeitet werden, werden als Lücke markiert.</span></figcaption></figure>
     </div>
   </div>
-</section>
+</article>
 
-<section class="project" id="arbeitsweise">
+<!-- 02 Content Planner -->
+<article class="case" id="content-planner" aria-labelledby="t-planner">
   <div class="wrap">
-    <div class="eyebrow">Arbeitsweise</div>
-    <h2>Produkt denken, mit KI-Agents bauen, sauber absichern</h2>
-    <div class="grid2">
-      <div class="card">
-        <h3>Meine Rolle</h3>
-        <p>Konzept, Produktdesign und Umsetzung beider Produkte: von der Problemdefinition über Datenmodell und Oberfläche bis zu Tests und Betrieb.</p>
+    <header class="case-head">
+      <div>
+        <div class="label mono"><b>02</b><span class="muted">Fallstudie · Web-App</span></div>
+        <h2 id="t-planner">Content Planner</h2>
+        <p>Videos hochladen, transkribieren lassen und pro Plattform passende Captions erhalten. Posts werden im Kalender geplant, vor der Veröffentlichung gegen Plattformregeln geprüft und automatisch veröffentlicht.</p>
       </div>
-      <div class="card">
-        <h3>Agentic Engineering</h3>
-        <p>Ich entwickle mit KI-Coding-Agents (Claude Code, Codex) nach festen Regeln: dokumentierte Invarianten, ein Branch pro Arbeitspaket, Lint, Typecheck und Tests vor jedem Commit, unabhängiges Review vor jedem Merge.</p>
+      <dl class="spec">
+        <div><dt>Rolle</dt><dd>Konzept, Design, Umsetzung</dd></div>
+        <div><dt>Art</dt><dd>Web-App mit Hintergrund-Worker</dd></div>
+        <div><dt>Kern</dt><dd>Transkription, Caption-Generierung, Scheduling</dd></div>
+        <div><dt>Code</dt><dd>Privat, Einblick im Gespräch</dd></div>
+      </dl>
+    </header>
+
+    <figure class="fig fig-hero">
+      <button class="frame" type="button" data-full="assets/content-planner/dashboard-week.webp"><img src="assets/content-planner/dashboard-week.webp" alt="Wochenkalender mit geplanten Posts für Instagram, Facebook und YouTube und einer Content-Queue links" width="2880" height="1800"></button>
+      <figcaption><span class="mono">Abb. 2.1</span><span>Planung: Entwürfe aus der Queue per Drag-and-drop auf einen Termin ziehen.</span></figcaption>
+    </figure>
+
+    <div class="body-grid">
+      <div class="prose">
+        <h3>Problem</h3>
+        <p>Ein Video auf vier Plattformen zu bringen heißt: vier Captions, vier Upload-Masken, vier Zeitpläne. Und jede Plattform bestraft andere Fehler mit weniger Reichweite.</p>
+        <h3>Lösung</h3>
+        <p>Ein Upload, ein Kalender. Die KI schlägt Caption und Hashtags pro Plattform vor, ein Regelwerk prüft vor der Veröffentlichung, und ein Worker veröffentlicht zum geplanten Zeitpunkt.</p>
+      </div>
+      <div>
+        <div class="block-title">Vom Video zum Post</div>
+        <ol class="steps">
+          <li><div><strong>Upload</strong> <span>Reel oder YouTube-Longform in S3-kompatiblen Speicher</span></div></li>
+          <li><div><strong>Transkript</strong> <span>Spracherkennung mit Whisper</span></div></li>
+          <li><div><strong>Caption</strong> <span>LLM-Vorschlag pro Plattform, mit Markenstimme und Hashtag-Pool</span></div></li>
+          <li><div><strong>Planung</strong> <span>Wochen- und Monatskalender, Zeitvorschlag aus Reichweitendaten</span></div></li>
+          <li><div><strong>Preflight</strong> <span>18 Plattformregeln, geprüft beim Einplanen</span></div></li>
+          <li><div><strong>Veröffentlichung</strong> <span>Meta Graph API für Instagram und Facebook, Publishing-Dienst für TikTok und YouTube</span></div></li>
+        </ol>
       </div>
     </div>
-    <p class="note">Alle Screenshots zeigen lokale Demo-Umgebungen mit erfundenen Daten. Video- und Bildvorschauen sind Platzhalter. Der Quellcode ist privat.</p>
+
+    <section class="decisions" aria-labelledby="d-planner">
+      <div class="block-title" id="d-planner">Entscheidungen, auf die es ankam</div>
+      <ol>
+        <li><h4>Regeln vor Reichweitenverlust</h4><p>Der Preflight prüft aus den Richtlinien von Meta, TikTok und YouTube abgeleitete Regeln, etwa fremde Wasserzeichen, doppelte Captions, zu viele Hashtags oder Clickbait-Titel. Kritische Funde verlangen vor dem Einplanen eine ausdrückliche Bestätigung, weichere erscheinen als Warnung.</p></li>
+        <li><h4>Worker getrennt von der Web-App</h4><p>Scheduling, Veröffentlichung und Token-Erneuerung laufen in einem eigenen Prozess, unabhängig davon, ob jemand die Oberfläche geöffnet hat.</p></li>
+        <li><h4>Fehler, mit denen man etwas anfangen kann</h4><p>Fehlschläge werden pro Plattform klassifiziert, damit statt „Fehler“ eine konkrete Handlungsanweisung erscheint.</p></li>
+        <li><h4>Tokens sparen, wo es geht</h4><p>Finden sich mindestens drei Hashtags aus dem Pool im Transkript, werden diese übernommen. Die KI ergänzt nur, wenn nötig.</p></li>
+      </ol>
+      <ul class="stack" aria-label="Technik">
+        <li>TypeScript</li><li>Next.js</li><li>React</li><li>Tailwind CSS</li><li>Drizzle ORM</li><li>PostgreSQL</li><li>Node.js Worker</li><li>OpenAI API</li><li>Whisper</li><li>S3 Storage</li><li>Meta Graph API</li><li>Clerk</li>
+      </ul>
+    </section>
+
+    <div class="gallery g-b">
+      <figure class="fig w7"><button class="frame" type="button" data-full="assets/content-planner/draft-editor.webp"><img src="assets/content-planner/draft-editor.webp" alt="Entwurfseditor mit KI-Caption, drei Hashtags und geplantem Termin" loading="lazy" width="2880" height="1800"></button><figcaption><span class="mono">Abb. 2.2</span><span>Editor: KI-Vorschlag für Caption und Hashtags, frei anpassbar, mit Zeitvorschlag.</span></figcaption></figure>
+      <figure class="fig w5"><button class="frame" type="button" data-full="assets/content-planner/dashboard-month.webp"><img src="assets/content-planner/dashboard-month.webp" alt="Monatsansicht des Content-Kalenders" loading="lazy" width="2880" height="1800"></button><figcaption><span class="mono">Abb. 2.3</span><span>Monatsansicht.</span></figcaption></figure>
+      <figure class="fig w6"><button class="frame" type="button" data-full="assets/content-planner/upload.webp"><img src="assets/content-planner/upload.webp" alt="Upload mit Formatwahl Reel oder YouTube-Longform" loading="lazy" width="2880" height="1800"></button><figcaption><span class="mono">Abb. 2.4</span><span>Upload mit Formatwahl.</span></figcaption></figure>
+      <figure class="fig w6"><button class="frame" type="button" data-full="assets/content-planner/settings.webp"><img src="assets/content-planner/settings.webp" alt="Einstellungen mit Content-Vorgaben und Hashtag-Pool" loading="lazy" width="2880" height="1800"></button><figcaption><span class="mono">Abb. 2.5</span><span>Content-Vorgaben und Hashtag-Pool für die Caption-Engine.</span></figcaption></figure>
+      <figure class="fig phone w6"><button class="frame" type="button" data-full="assets/content-planner/mobile-dashboard.webp"><img src="assets/content-planner/mobile-dashboard.webp" alt="Mobile Agenda-Ansicht mit geplanten Posts" loading="lazy" width="780" height="1688"></button><figcaption><span class="mono">Abb. 2.6</span><span>Mobil: Agenda.</span></figcaption></figure>
+      <figure class="fig phone w6"><button class="frame" type="button" data-full="assets/content-planner/mobile-draft.webp"><img src="assets/content-planner/mobile-draft.webp" alt="Mobiler Entwurfseditor mit Video-Platzhalter" loading="lazy" width="780" height="1688"></button><figcaption><span class="mono">Abb. 2.7</span><span>Mobil: Editor, Video als Platzhalter.</span></figcaption></figure>
+    </div>
+  </div>
+</article>
+
+<section class="method" id="arbeitsweise" aria-labelledby="t-method">
+  <div class="wrap">
+    <div class="method-grid">
+      <div>
+        <div class="mono muted">Arbeitsweise</div>
+        <h2 id="t-method">Mit KI-Agents bauen, wie ein Team arbeitet.</h2>
+      </div>
+      <div>
+        <p>Ich entwickle mit KI-Coding-Agents (Claude Code, Codex), aber nicht auf Zuruf. Jedes Projekt hat festgeschriebene Invarianten, und jedes Arbeitspaket durchläuft denselben Ablauf, bevor es in den Hauptzweig darf.</p>
+        <div class="pipeline">
+          <div><span class="mono">01</span><strong>Invarianten</strong><span>Regeln, die nie brechen dürfen, stehen im Repo</span></div>
+          <div><span class="mono">02</span><strong>Branch</strong><span>ein Branch pro Arbeitspaket</span></div>
+          <div><span class="mono">03</span><strong>Checks</strong><span>Lint, Typecheck, Build und Tests vor jedem Commit</span></div>
+          <div><span class="mono">04</span><strong>Review</strong><span>unabhängiges Review des exakten Stands</span></div>
+          <div><span class="mono">05</span><strong>Merge</strong><span>erst wenn alle Nachweise grün sind</span></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 </main>
 
 <footer>
-  <div class="wrap">Marko Kraljević · Project Showcase</div>
+  <div class="wrap">
+    <div>
+      <h2>Den Code zeige ich gern im Gespräch.</h2>
+      <p>Beide Repositories sind privat. In einem Gespräch führe ich durch Architektur, Tests und Entscheidungen.</p>
+    </div>
+    <div><a class="btn" href="https://github.com/MarkoKralj-cloud" rel="me">GitHub-Profil <span aria-hidden="true">→</span></a></div>
+    <div class="fine mono"><span>Marko Kraljević · Project Showcase</span><span>Screenshots aus lokalen Demo-Umgebungen mit erfundenen Daten</span></div>
+  </div>
 </footer>
+
+<dialog id="lightbox" aria-label="Abbildung vergrößert">
+  <button class="close" type="button" autofocus>Schließen</button>
+  <img alt="">
+  <p></p>
+</dialog>
+<script>
+  const box = document.getElementById('lightbox');
+  const big = box.querySelector('img');
+  const cap = box.querySelector('p');
+  document.querySelectorAll('button.frame').forEach((btn) => {
+    btn.setAttribute('aria-label', 'Abbildung vergrößern: ' + btn.querySelector('img').alt);
+    btn.addEventListener('click', () => {
+      big.src = btn.dataset.full;
+      big.alt = btn.querySelector('img').alt;
+      cap.textContent = btn.closest('figure').querySelector('figcaption').textContent.trim();
+      box.showModal();
+    });
+  });
+  box.querySelector('.close').addEventListener('click', () => box.close());
+  box.addEventListener('click', (e) => { if (e.target === box) box.close(); });
+</script>
 </body>
 </html>

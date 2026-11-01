@@ -1,31 +1,36 @@
-# Project Showcase
+# Project Showcase · Marko Kraljević
 
-Zwei KI-Produkte, die ich konzipiert, gestaltet und umgesetzt habe.
-Dieses Repository enthält nur die Präsentation: Screenshots und Beschreibungen. Der Quellcode ist privat.
+Zwei KI-Produkte, die ich allein konzipiert, gestaltet und umgesetzt habe: vom Problem über Datenmodell und Oberfläche bis zu Tests und Betrieb.
 
-**Live-Seite:** https://markokralj-cloud.github.io/project-showcase/
+**→ [Zur Showcase-Seite](https://markokralj-cloud.github.io/project-showcase/)**
+
+Dieses Repository enthält nur die Präsentation. Der Quellcode beider Produkte ist privat, durch Architektur, Tests und Entscheidungen führe ich gern in einem Gespräch.
+
+| | Projekt | Worum es geht | Kern |
+|---|---|---|---|
+| 01 | [AI Inbox](#01--ai-inbox) | KI-Antwortentwürfe für Support-E-Mails, mit Quellen und Freigabe-Workflow | RAG · Klassifizierung · Mehrmandanten-SaaS |
+| 02 | [Content Planner](#02--content-planner) | Vom Video zum geplanten Post auf Instagram, Facebook, TikTok und YouTube | Transkription · Caption-Generierung · Scheduling |
 
 ---
 
-## AI Inbox – KI-gestützter Kundensupport
-
-Eingehende Support-E-Mails werden klassifiziert, mit der eigenen Wissensdatenbank abgeglichen und als Antwortentwurf vorbereitet. Ein Mensch prüft und gibt frei; Routinefälle können je Kategorie automatisch versendet werden.
+## 01 · AI Inbox
 
 ![Fallansicht mit KI-Entwurf und Quellen](assets/ai-inbox/ticket-detail.webp)
 
-**Ablauf:** Eingang → Klassifizierung → Wissenssuche (RAG) → Entwurf mit Konfidenz → Prüfung → Versand
+**Problem.** Support-Postfächer füllen sich mit wiederkehrenden Fragen, deren Antworten längst dokumentiert sind. Vollautomatische Antworten sind aber riskant: Eine falsche oder doppelt verschickte E-Mail kostet mehr Vertrauen, als sie Zeit spart.
 
-- E-Mail-Eingang per IMAP, Versand per SMTP
-- Klassifizierung nach Anliegen, Thema, Dringlichkeit und Stimmung
-- Retrieval-Augmented Generation über Dokumente, URLs und Notion
-- Antwortentwurf mit Konfidenzwert und nachvollziehbaren Quellen
-- Freigabe-Workflow: menschliche Prüfung oder Auto-Versand je Kategorie
-- Auswertung von Akzeptanzrate, Bearbeitungsrate und Wissenslücken
-- Mehrmandantenfähig, mit Teamrollen, Audit-Log und Abrechnung
+**Lösung.** Die KI schreibt den Entwurf und belegt ihn mit Quellen, der Mensch behält die Kontrolle. Pro Kategorie lässt sich festlegen, was geprüft werden muss und was automatisch versendet werden darf.
 
-**Engineering-Schwerpunkte:** Ticket-Zustandsmaschine, Versandgarantie ohne Doppelzustellung, strikte Mandantentrennung, Logs ohne personenbezogene Daten, knapp 500 automatisierte Tests plus visuelle Regressionstests.
+**Ablauf:** Eingang (IMAP/Webhook) → Klassifizierung → Wissenssuche (RAG über Dokumente, URLs, Notion) → Entwurf mit Konfidenz und Quellen → Freigabe oder Auto-Versand → SMTP-Versand und Auswertung
 
-**Technik:** TypeScript · React · Vite · Tailwind CSS · Node.js/Express · PostgreSQL · OpenAI API · Clerk · Stripe · Sentry · Vitest · Playwright
+**Entscheidungen, auf die es ankam**
+- **Lieber prüfen als doppelt senden.** Ist unklar, ob eine E-Mail beim Mailserver ankam, wird sie nicht automatisch erneut verschickt.
+- **Tickets als Zustandsmaschine.** Definierte Zustände statt widersprüchlicher Sonderfälle.
+- **Begründungen müssen stimmen.** Die Oberfläche zeigt den Grund, der tatsächlich gegriffen hat, warum ein Fall beim Menschen liegt.
+- **Keine Kundendaten im Monitoring.** Logs werden vor stdout und Sentry auf freigegebene Diagnosefelder reduziert.
+- **Invarianten statt Hoffnung.** Ticket-Zustände, Versandgarantie und Mandantentrennung sind festgeschrieben, abgesichert durch knapp 500 automatisierte Tests und visuelle Regressionstests.
+
+**Technik:** TypeScript · React · Vite · Tailwind CSS · Node.js (Express) · PostgreSQL · OpenAI API · Clerk · Stripe · Sentry · Vitest · Playwright
 
 | Start | KI-Leistung | Wissensdatenbank |
 |---|---|---|
@@ -33,20 +38,21 @@ Eingehende Support-E-Mails werden klassifiziert, mit der eigenen Wissensdatenban
 
 ---
 
-## Content Planner – vom Video zum geplanten Post
-
-Videos hochladen, transkribieren lassen und pro Plattform passende Captions und Hashtags erhalten. Die Posts werden im Kalender geplant, vor der Veröffentlichung gegen Plattformregeln geprüft und zum geplanten Zeitpunkt automatisch veröffentlicht.
+## 02 · Content Planner
 
 ![Wochenkalender mit geplanten Posts](assets/content-planner/dashboard-week.webp)
 
-**Ablauf:** Upload → Transkript → KI-Caption → Planung → Preflight-Prüfung → Veröffentlichung
+**Problem.** Ein Video auf vier Plattformen zu bringen heißt: vier Captions, vier Upload-Masken, vier Zeitpläne. Und jede Plattform bestraft andere Fehler mit weniger Reichweite.
 
-- Video-Upload in einen S3-kompatiblen Speicher
-- Transkription und KI-Captions pro Plattform, mit Markenstimme und Hashtag-Pool
-- Wochen- und Monatskalender mit Drag-and-drop und Zeitvorschlag aus Reichweitendaten
-- Automatische Veröffentlichung: Instagram und Facebook über die Meta Graph API, TikTok und YouTube über einen Publishing-Dienst
-- Preflight-Regelwerk mit 18 Plattformregeln gegen Reichweitenverlust
-- Archiv veröffentlichter Inhalte, Fehler- und Wartungszustände
+**Lösung.** Ein Upload, ein Kalender. Die KI schlägt Caption und Hashtags pro Plattform vor, ein Regelwerk prüft beim Einplanen, und ein Worker veröffentlicht zum geplanten Zeitpunkt.
+
+**Ablauf:** Upload (S3-kompatibel) → Transkript (Whisper) → Caption pro Plattform → Planung im Kalender → Preflight mit 18 Plattformregeln → Veröffentlichung (Meta Graph API für Instagram und Facebook, Publishing-Dienst für TikTok und YouTube)
+
+**Entscheidungen, auf die es ankam**
+- **Regeln vor Reichweitenverlust.** Aus den Richtlinien von Meta, TikTok und YouTube abgeleitete Regeln, etwa fremde Wasserzeichen, doppelte Captions oder Clickbait-Titel. Kritische Funde verlangen eine ausdrückliche Bestätigung.
+- **Worker getrennt von der Web-App.** Scheduling, Veröffentlichung und Token-Erneuerung laufen unabhängig von der Oberfläche.
+- **Fehler, mit denen man etwas anfangen kann.** Fehlschläge werden pro Plattform klassifiziert und mit konkreter Handlungsanweisung angezeigt.
+- **Tokens sparen.** Finden sich mindestens drei Hashtags aus dem Pool im Transkript, werden diese übernommen, die KI ergänzt nur bei Bedarf.
 
 **Technik:** TypeScript · Next.js · React · Tailwind CSS · Drizzle ORM · PostgreSQL · Node.js Worker · OpenAI API · Whisper · S3 Storage · Meta Graph API · Clerk
 
@@ -58,6 +64,12 @@ Videos hochladen, transkribieren lassen und pro Plattform passende Captions und 
 
 ## Arbeitsweise
 
-Konzept, Produktdesign und Umsetzung beider Produkte. Entwickelt mit KI-Coding-Agents (Claude Code, Codex) nach festen Regeln: dokumentierte Invarianten, ein Branch pro Arbeitspaket, Lint, Typecheck und Tests vor jedem Commit, unabhängiges Review vor jedem Merge.
+Ich entwickle mit KI-Coding-Agents (Claude Code, Codex) nach festen Regeln:
 
-*Alle Screenshots zeigen lokale Demo-Umgebungen mit erfundenen Daten. Video- und Bildvorschauen sind Platzhalter.*
+1. **Invarianten.** Regeln, die nie brechen dürfen, stehen im Repository.
+2. **Branch.** Ein Branch pro Arbeitspaket.
+3. **Checks.** Lint, Typecheck, Build und Tests vor jedem Commit.
+4. **Review.** Unabhängiges Review des exakten Stands.
+5. **Merge.** Erst wenn alle Nachweise grün sind.
+
+<sub>Alle Screenshots zeigen lokale Demo-Umgebungen mit erfundenen Daten. Video- und Bildvorschauen sind Platzhalter.</sub>
